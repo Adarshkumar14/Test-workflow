@@ -1,0 +1,17 @@
+name: Test-pipeline
+on:
+  push:
+    branches:
+      - main
+jobs:
+  deploy-aws-infra:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout repository
+        uses: actions/checkout@v2
+      - name: Install civo
+        uses: civo/action-civo
+        with:
+          token: ${{ secrets.CIVO_TOKEN }}
+      - name: Creating cluster
+        run: civo kubernetes create kube_demo --size=g3.k3s.extrasmall --nodes=2 --wait
