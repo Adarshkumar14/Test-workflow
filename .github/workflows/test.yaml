@@ -4,11 +4,11 @@ on:
     branches:
       - main
 jobs:
-  deploy-aws-infra:
+  CreatingCluster:
     runs-on: ubuntu-latest
     steps:
       - name: Install civo
-        uses: civo/action-civo
+        uses: civo/action-civo@v1.0.0
         with:
           token: ${{ secrets.CIVO_TOKEN }}
       - name: Creating cluster
